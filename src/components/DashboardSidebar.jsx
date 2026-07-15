@@ -134,6 +134,7 @@ const DashboardSidebar = () => {
                     `https://ui-avatars.com/api/?name=${encodeURIComponent("Jane Doe")}&background=7c3aed&color=fff&bold=true`
                   }
                   alt="Avatar"
+                  unoptimized
                   className="object-cover w-full h-full"
                 />
               </div>

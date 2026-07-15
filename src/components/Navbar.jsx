@@ -19,7 +19,7 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  console.log(session);
+  // console.log(session);
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -57,7 +57,7 @@ export default function Navbar() {
           </Link>
           {user && session?.user && (
             <Link
-              href={"/"}
+              href={`/dashboard/${user?.role}`}
               className={`text-sm font-medium transition-colors ${pathname.startsWith("/dashboard") ? "text-pink-500 font-semibold" : "text-slate-300 hover:text-white"}`}
             >
               Dashboard

@@ -4,7 +4,10 @@ import { useState } from "react";
 import { Card, Button, Input } from "@heroui/react";
 import { FaCheck } from "react-icons/fa";
 
-export default function BookingWidget({ ticketPrice = 49.99, availableSeats = 120 }) {
+export default function BookingWidget({
+  ticketPrice = 49.99,
+  availableSeats = 120,
+}) {
   const isSoldOut = availableSeats <= 0;
 
   return (
@@ -17,7 +20,7 @@ export default function BookingWidget({ ticketPrice = 49.99, availableSeats = 12
           <div className="flex justify-between items-center text-sm">
             <span className="text-slate-400">Ticket Price:</span>
             <span className="text-pink-400 font-extrabold text-xl">
-              {ticketPrice === 0 ? "Free" : `$${ticketPrice.toFixed(2)}`}
+              {ticketPrice === 0 ? "Free" : `$${ticketPrice}`}
             </span>
           </div>
           <div className="flex justify-between items-center text-sm">
@@ -38,7 +41,7 @@ export default function BookingWidget({ ticketPrice = 49.99, availableSeats = 12
             <Input
               type="number"
               label="Quantity"
-              labelPlacement="outside"
+              // labelPlacement="outside"
               placeholder="1"
               min={1}
               max={availableSeats}
@@ -47,19 +50,18 @@ export default function BookingWidget({ ticketPrice = 49.99, availableSeats = 12
 
             <div className="flex justify-between items-center text-sm font-semibold text-white pt-2">
               <span>Total Amount:</span>
-              <span className="text-white text-lg">
-                ${ticketPrice.toFixed(2)}
-              </span>
+              <span className="text-white text-lg">${ticketPrice}</span>
             </div>
           </>
         )}
 
         <Button
           isDisabled={isSoldOut}
-          className={`w-full font-bold h-12 shadow-lg ${isSoldOut
-            ? "bg-slate-800 text-slate-500 shadow-none cursor-not-allowed"
-            : "bg-gradient-to-r from-pink-500 to-indigo-600 text-white shadow-pink-500/10 hover:shadow-pink-500/20"
-            }`}
+          className={`w-full font-bold h-12 shadow-lg ${
+            isSoldOut
+              ? "bg-slate-800 text-slate-500 shadow-none cursor-not-allowed"
+              : "bg-gradient-to-r from-pink-500 to-indigo-600 text-white shadow-pink-500/10 hover:shadow-pink-500/20"
+          }`}
           radius="lg"
         >
           {isSoldOut ? "Sold Out" : "Book Ticket Now"}

@@ -11,12 +11,12 @@ import {
   Label,
   Form,
 } from "@heroui/react";
-// import { FaUser, FaEnvelope, FaLock, FaImage, FaGoogle } from "react-icons/fa";
+
 import Logo from "@/components/Logo";
 import { useForm } from "react-hook-form";
 import { signUp } from "@/lib/auth-client";
-import toast from "react-hot-toast";
-import { imageUpload } from "@/utils/uploadImage";
+
+import { uploadImage } from "@/utils/uploadImage";
 import { redirect } from "next/navigation";
 
 export default function RegisterPage() {
@@ -28,7 +28,7 @@ export default function RegisterPage() {
 
   const onSubmit = async (data) => {
     const imageFile = data.image[0];
-    const imageUrl = await imageUpload(imageFile);
+    const imageUrl = await uploadImage(imageFile);
 
     const { data: signUpData, error: signUpError } = await signUp.email({
       name: data.name,

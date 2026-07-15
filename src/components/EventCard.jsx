@@ -10,18 +10,32 @@ const DEFAULT_EVENT = {
   banner: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4",
   date: "October 24, 2026",
   location: "Silicon Valley, CA",
-  ticketPrice: 99.00
+  ticketPrice: 99.0,
 };
 
-export default function EventCard({ event = DEFAULT_EVENT, buttonText = "View Details" }) {
+export default function EventCard({
+  event = DEFAULT_EVENT,
+  buttonText = "View Details",
+}) {
   const currentEvent = event || DEFAULT_EVENT;
   return (
-    <Card className="bg-slate-900/50 border border-white/5 backdrop-blur-xl hover:border-pink-500/30 transition-all duration-300 h-full flex flex-col p-0 overflow-hidden" radius="lg">
+    <Card
+      className="bg-slate-900/50 border border-white/5 backdrop-blur-xl hover:border-pink-500/30 transition-all duration-300 h-full flex flex-col p-0 overflow-hidden"
+      radius="lg"
+    >
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src={currentEvent.banner && (currentEvent.banner.startsWith("http") || currentEvent.banner.startsWith("/")) ? currentEvent.banner : "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4"}
+          src={
+            currentEvent.banner &&
+            (currentEvent.banner.startsWith("http") ||
+              currentEvent.banner.startsWith("/"))
+              ? currentEvent.banner
+              : "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4"
+          }
           alt={currentEvent.title}
           fill
+          loading="eager"
+          unoptimized
           className="object-cover transform hover:scale-110 transition duration-700"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
@@ -29,7 +43,7 @@ export default function EventCard({ event = DEFAULT_EVENT, buttonText = "View De
           {currentEvent.category}
         </span>
       </div>
-      <div className="p-6 flex-grow space-y-4">
+      <div className="p-6 grow space-y-4">
         <h3 className="text-xl font-bold text-white hover:text-pink-500 transition-colors line-clamp-1">
           {currentEvent.title}
         </h3>
@@ -46,7 +60,7 @@ export default function EventCard({ event = DEFAULT_EVENT, buttonText = "View De
       </div>
       <div className="px-6 pb-6 pt-3 flex justify-between items-center border-t-2 border-white/5 mt-auto">
         <span className="text-pink-400 font-extrabold text-lg">
-          {currentEvent.ticketPrice === 0 ? "Free" : `$${currentEvent.ticketPrice.toFixed(2)}`}
+          {currentEvent.price === 0 ? "Free" : `$${currentEvent.price}`}
         </span>
         <Link href={`/events/${currentEvent._id}`}>
           <Button
